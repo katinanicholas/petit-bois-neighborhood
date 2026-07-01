@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petit Bois Neighborhood | Biloxi MS | Keys. Clarity. Katina.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-deep:#1A4744; --teal-mid:#2D6B67; --teal-light:#E1F5EE;
+    --teal-border:#5DCAA5; --teal-accent:#1D9E75; --gold:#C4964A;
+    --gold-light:#FAEEDA; --sand:#F5F0E8; --white:#FDFAF5;
+    --dark:#1E1E1A; --mid:#4A4840; --stone:#8A8578; --border:#E8E3DA;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+  body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--mid); line-height:1.6; font-size:16px; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(26,71,68,0.97); backdrop-filter:blur(8px); padding:14px 40px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-brand { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--gold); }
+  .nav-links { display:flex; gap:24px; list-style:none; }
+  .nav-links a { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(253,250,245,0.7); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--gold); }
+
+  /* HERO */
+  .hero { background:var(--teal-deep); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:120px 40px 80px; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 40%, rgba(29,158,117,0.12) 0%, transparent 70%); pointer-events:none; }
+  .hero-eyebrow { font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,6vw,68px); font-weight:300; line-height:1.1; color:var(--white); max-width:720px; margin-bottom:24px; }
+  .hero h1 em { font-style:italic; color:var(--gold); }
+  .hero-sub { font-size:16px; color:rgba(253,250,245,0.65); max-width:520px; margin-bottom:44px; line-height:1.7; }
+  .pill { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.07); border:1px solid rgba(93,202,165,0.3); border-radius:40px; padding:10px 22px; font-size:12px; color:rgba(253,250,245,0.6); letter-spacing:0.06em; margin-bottom:44px; }
+  .pill span { color:var(--teal-border); }
+  .btn-primary { display:inline-block; background:var(--gold); color:var(--dark); font-size:13px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:16px 36px; border-radius:4px; text-decoration:none; transition:background 0.2s,transform 0.2s; }
+  .btn-primary:hover { background:#d4a45a; transform:translateY(-1px); }
+  .btn-outline { display:inline-block; border:1px solid rgba(93,202,165,0.4); color:rgba(253,250,245,0.7); font-size:13px; letter-spacing:0.06em; text-transform:uppercase; padding:15px 36px; border-radius:4px; text-decoration:none; margin-left:12px; transition:border-color 0.2s,color 0.2s; }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* SOLD BANNER */
+  .sold-banner { background:var(--gold); padding:16px 40px; text-align:center; }
+  .sold-banner p { font-size:13px; font-weight:500; color:var(--dark); letter-spacing:0.06em; text-transform:uppercase; }
+  .sold-banner p strong { color:var(--teal-deep); }
+
+  /* SHARED SECTION STYLES */
+  .section { padding:80px 40px; max-width:1000px; margin:0 auto; }
+  .section-label { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,4vw,40px); font-weight:300; color:var(--teal-deep); line-height:1.2; margin-bottom:20px; }
+  .section-title em { font-style:italic; }
+  .divider { width:40px; height:2px; background:var(--gold); margin-bottom:24px; }
+  .body-text { font-size:15px; color:var(--mid); line-height:1.75; max-width:640px; margin-bottom:16px; }
+
+  /* MARKET STATS */
+  .stats-bg { background:var(--sand); padding:80px 40px; }
+  .stats-inner { max-width:1000px; margin:0 auto; }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2px; margin-top:32px; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .stat-card { background:var(--white); padding:28px 20px; text-align:center; }
+  .stat-value { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--teal-deep); line-height:1; margin-bottom:8px; }
+  .stat-value em { font-style:italic; color:var(--gold); }
+  .stat-label { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone); }
+  .insight-box { background:var(--teal-deep); border-radius:6px; padding:24px 28px; margin-top:24px; border-left:3px solid var(--gold); }
+  .insight-box p { font-size:14px; color:rgba(253,250,245,0.8); line-height:1.7; margin:0; }
+  .insight-box strong { color:var(--gold); }
+
+  /* RECENT SALES */
+  .sales-table { width:100%; border-collapse:collapse; margin-top:28px; }
+  .sales-table th { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone); padding:10px 16px; text-align:left; border-bottom:2px solid var(--teal-deep); background:var(--sand); }
+  .sales-table td { font-size:14px; color:var(--mid); padding:14px 16px; border-bottom:1px solid var(--border); }
+  .sales-table tr:hover td { background:var(--sand); }
+  .sale-price { font-weight:500; color:var(--teal-deep); }
+  .sale-badge { display:inline-block; background:var(--teal-light); color:var(--teal-deep); font-size:10px; font-weight:500; letter-spacing:0.06em; padding:3px 8px; border-radius:3px; text-transform:uppercase; }
+
+  /* HOME VALUE CTA */
+  .value-bg { background:var(--teal-deep); padding:80px 40px; text-align:center; }
+  .value-inner { max-width:600px; margin:0 auto; }
+  .value-inner .section-label { color:var(--gold); text-align:center; }
+  .value-inner .section-title { color:var(--white); text-align:center; }
+  .value-inner .body-text { color:rgba(253,250,245,0.65); text-align:center; max-width:100%; margin:0 auto 32px; }
+  .value-form { display:flex; flex-direction:column; gap:12px; }
+  .value-form input { padding:14px 18px; background:rgba(255,255,255,0.07); border:1px solid rgba(93,202,165,0.25); border-radius:4px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--white); outline:none; transition:border-color 0.2s; }
+  .value-form input::placeholder { color:rgba(253,250,245,0.35); }
+  .value-form input:focus { border-color:var(--gold); }
+  .value-form button { padding:16px; background:var(--gold); color:var(--dark); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; border:none; border-radius:4px; cursor:pointer; transition:background 0.2s; }
+  .value-form button:hover { background:#d4a45a; }
+
+  /* COMMUNITY */
+  .community-bg { background:var(--white); padding:80px 40px; }
+  .community-inner { max-width:1000px; margin:0 auto; }
+  .community-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:32px; }
+  .community-card { background:var(--sand); border-radius:6px; padding:24px; border-top:2px solid var(--teal-border); }
+  .community-icon { width:44px; height:44px; margin-bottom:14px; }
+  .community-card h3 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--teal-deep); margin-bottom:8px; }
+  .community-card p { font-size:13px; color:var(--mid); line-height:1.65; margin:0; }
+  .community-card a { color:var(--teal-accent); font-size:12px; text-decoration:none; display:block; margin-top:8px; }
+  .community-card a:hover { color:var(--gold); }
+
+  /* CITY NUMBERS */
+  .numbers-bg { background:var(--sand); padding:80px 40px; }
+  .numbers-inner { max-width:1000px; margin:0 auto; }
+  .numbers-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; margin-top:32px; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .number-item { background:var(--white); padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+  .number-label { font-size:13px; color:var(--mid); }
+  .number-val { font-size:13px; color:var(--teal-mid); font-weight:500; }
+
+  /* NEWSLETTER SIGNUP */
+  .signup-bg { background:var(--teal-mid); padding:80px 40px; }
+  .signup-inner { max-width:560px; margin:0 auto; text-align:center; }
+  .signup-inner .section-title { color:var(--white); }
+  .signup-inner .body-text { color:rgba(253,250,245,0.65); max-width:100%; text-align:center; margin:0 auto 28px; }
+  .signup-form { display:flex; flex-direction:column; gap:12px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .signup-form input { padding:14px 18px; background:rgba(255,255,255,0.1); border:1px solid rgba(93,202,165,0.25); border-radius:4px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--white); outline:none; transition:border-color 0.2s; }
+  .signup-form input::placeholder { color:rgba(253,250,245,0.35); }
+  .signup-form input:focus { border-color:var(--gold); }
+  .signup-form button { padding:16px; background:var(--gold); color:var(--dark); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; border:none; border-radius:4px; cursor:pointer; margin-top:4px; }
+  .form-note { font-size:11px; color:rgba(253,250,245,0.3); margin-top:10px; }
+
+  /* ABOUT */
+  .about-bg { background:var(--sand); padding:80px 40px; }
+  .about-inner { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .about-text .body-text { max-width:100%; }
+  .about-contact { background:var(--white); border-radius:6px; padding:32px; border:1px solid var(--border); }
+  .about-contact h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--teal-deep); margin-bottom:20px; }
+  .contact-item { display:flex; align-items:center; gap:12px; margin-bottom:14px; font-size:14px; color:var(--mid); }
+  .contact-item span:first-child { font-size:16px; width:24px; }
+  .contact-item a { color:var(--teal-mid); text-decoration:none; }
+  .contact-item a:hover { color:var(--gold); }
+
+  /* FOOTER */
+  footer { background:var(--dark); padding:32px 40px; text-align:center; }
+  footer .brand { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:13px; margin-bottom:8px; display:block; }
+  footer p { font-size:11px; color:rgba(253,250,245,0.3); line-height:1.6; margin:0; }
+
+  @media(max-width:768px){
+    nav{padding:14px 20px;}
+    .nav-links{display:none;}
+    .hero{padding:100px 24px 60px;}
+    .section,.stats-bg,.value-bg,.community-bg,.numbers-bg,.signup-bg,.about-bg{padding:60px 24px;}
+    .about-inner{grid-template-columns:1fr;gap:32px;}
+    .form-row{grid-template-columns:1fr;}
+    .btn-outline{margin-left:0;margin-top:12px;display:block;text-align:center;}
+    .sales-table th,.sales-table td{padding:10px 10px;font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Keys. Clarity. Katina.</div>
+  <ul class="nav-links">
+    <li><a href="#market">Market Data</a></li>
+    <li><a href="#sales">Recent Sales</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#value">Home Value</a></li>
+    <li><a href="#newsletter">Newsletter</a></li>
+    <li><a href="#about">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Petit Bois Subdivision · Biloxi, MS 39531</p>
+  <h1>Buyer Desire Is Still High<br><em>In Your Neighborhood.</em></h1>
+  <p class="hero-sub">Stay informed on what is happening in Petit Bois recent sales, market trends, and what your home may be worth today.</p>
+  <div class="pill">
+    <span>✓</span> Monthly market updates · No pressure · Just useful information
+  </div>
+  <div>
+    <a href="#newsletter" class="btn-primary">Get the Newsletter</a>
+    <a href="#market" class="btn-outline">View Market Data</a>
+  </div>
+</section>
+
+<!-- SOLD BANNER -->
+<div class="sold-banner">
+  <p>A home in Petit Bois recently sold · <strong>2556 Audubon Place · Biloxi, MS 39531</strong> · Here is what that means for your neighborhood</p>
+</div>
+
+<!-- MARKET DATA -->
+<section id="market">
+  <div class="stats-bg">
+    <div class="stats-inner">
+      <p class="section-label">Neighborhood Market Snapshot · July 2026</p>
+      <h2 class="section-title">What Is Happening in <em>Your Market</em></h2>
+      <div class="divider"></div>
+      <p class="body-text">Buyer desire is still high in your neighborhood. The Biloxi market in the $200,000 to $300,000 price range remains active and homes continue to sell at a strong percentage of list price.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">55</div>
+          <div class="stat-label">Avg Days to Sell</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value"><em>98%</em></div>
+          <div class="stat-label">Of List Price Achieved</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">$251K</div>
+          <div class="stat-label">Avg Sale Price</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">578</div>
+          <div class="stat-label">Homes Under Contract</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">501</div>
+          <div class="stat-label">Sold This Period</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1,584</div>
+          <div class="stat-label">Active Listings</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <p><strong>What this means for Petit Bois homeowners:</strong> With 578 homes currently under contract and homes selling in an average of 55 days, buyers remain active and motivated. If you have been curious about what your home is worth in today's market this is a good time to find out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT SALES -->
+<section id="sales" class="section">
+  <p class="section-label">Recent Sales · Petit Bois</p>
+  <h2 class="section-title">What Homes Are <em>Selling For</em></h2>
+  <div class="divider"></div>
+  <p class="body-text">Recent sales in your neighborhood directly impact what your home is worth today. Here is a look at what has sold nearby.</p>
+
+  <table class="sales-table">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Beds / Baths</th>
+        <th>Price</th>
+        <th>Days on Market</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2556 Audubon Place</td>
+        <td>3 BD / 2 BA</td>
+        <td class="sale-price">$230,000</td>
+        <td>50 days</td>
+        <td><span class="sale-badge">Sold</span></td>
+      </tr>
+      <tr>
+        <td>251 Rue Petit Bois</td>
+        <td>3 BD / 2 BA</td>
+        <td class="sale-price">$206,000</td>
+        <td>27 days</td>
+        <td><span class="sale-badge" style="background:#FFF3CD;color:#856404;">Active</span></td>
+      </tr>
+      <tr>
+        <td colspan="5" style="font-size:13px;color:var(--stone);padding:14px 16px;font-style:italic;">Additional recent sales data updated monthly. Contact Katina for a full neighborhood sales report.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- COMMUNITY HIGHLIGHTS -->
+<section id="community">
+  <div class="community-bg">
+    <div class="community-inner">
+      <p class="section-label">Community Highlights · July 2026</p>
+      <h2 class="section-title">What Is Happening <em>Near You</em></h2>
+      <div class="divider"></div>
+      <p class="body-text">Events and activities happening in and around Biloxi this month.</p>
+
+      <div class="community-grid">
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+          <h3>Red, White & Biloxi: America250</h3>
+          <p>July 4, 5 to 9:30 p.m. at Biloxi Town Green, 710 Beach Blvd. Family friendly celebration with music, entertainment, food trucks, and fireworks. Free admission.</p>
+          <a href="https://biloxi.ms.us">biloxi.ms.us · 228-435-6339</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>Biloxi Shuckers Fireworks Extravaganza</h3>
+          <p>July 4 at Keesler Federal Park. Gates open at 5:30 p.m. Military personnel receive discounted admission. Post-game fireworks show.</p>
+          <a href="https://www.biloxishuckers.com">biloxishuckers.com</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3>Boom Boom Committee Fireworks</h3>
+          <p>July 4 at 9 p.m. Fireworks launched from a barge near Deer Island set to patriotic music on BOB 105.9. Best views from Biloxi Lighthouse to Biloxi Bay Bridge.</p>
+          <a href="https://biloxi.ms.us">biloxi.ms.us</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></div>
+          <h3>Stars, Stripes & Seafood: America250</h3>
+          <p>July 3, 5:30 to 7:30 p.m. at the Maritime & Seafood Industry Museum, 115 1st St. Re-enactments and refreshments. Free admission.</p>
+          <a href="https://www.maritimemuseum.org">maritimemuseum.org · 228-435-6254</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Donal M. Snyder Sr. Community Center</h3>
+          <p>2520 Pass Road. Activities for all ages including a four-lane lap pool, indoor walking track, fitness room, and monthly senior events. Details: 228-388-7170.</p>
+          <a href="https://biloxi.ms.us">biloxi.ms.us</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A4744" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3>Center Stage Theatre</h3>
+          <p>2670 Rue Palafox, 228-388-6258. Summer productions underway. A community favorite for live theatre on the Gulf Coast.</p>
+          <a href="https://centerstagebiloxi.com">centerstagebiloxi.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME VALUE REQUEST -->
+<section id="value">
+  <div class="value-bg">
+    <div class="value-inner">
+      <p class="section-label">Know Your Number</p>
+      <h2 class="section-title" style="color:var(--white);">What Is Your Home <em>Worth Today?</em></h2>
+      <div class="divider" style="margin:0 auto 20px;"></div>
+      <p class="body-text">Recent sales in Petit Bois directly impact your home's value. If you are curious about what your home may be worth in today's market reach out below. No pressure and no obligation just honest information.</p>
+
+      <form class="value-form" action="https://formspree.io/f/xvzlbglb" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="address" placeholder="Your Property Address">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number">
+        <input type="hidden" name="source" value="Petit Bois Home Value Request">
+        <button type="submit">Request My Home Value</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FREQUENTLY CALLED NUMBERS -->
+<section id="numbers">
+  <div class="numbers-bg">
+    <div class="numbers-inner">
+      <p class="section-label">City of Biloxi</p>
+      <h2 class="section-title">Frequently Called <em>Numbers</em></h2>
+      <div class="divider"></div>
+      <p class="body-text">Useful contacts for Biloxi residents. All area code 228 unless otherwise noted.</p>
+
+      <div class="numbers-grid">
+        <div><div class="number-item"><span class="number-label">Animal Control</span><span class="number-val">392-0641</span></div>
+        <div class="number-item"><span class="number-label">Building Permits</span><span class="number-val">435-6270</span></div>
+        <div class="number-item"><span class="number-label">City Council</span><span class="number-val">435-6257</span></div>
+        <div class="number-item"><span class="number-label">Code Enforcement</span><span class="number-val">435-0841</span></div>
+        <div class="number-item"><span class="number-label">Emergency Police & Fire</span><span class="number-val">911</span></div>
+        <div class="number-item"><span class="number-label">Garbage Collection</span><span class="number-val">701-9086</span></div></div>
+        <div><div class="number-item"><span class="number-label">Parks & Recreation</span><span class="number-val">388-7170</span></div>
+        <div class="number-item"><span class="number-label">Public Schools</span><span class="number-val">374-1810</span></div>
+        <div class="number-item"><span class="number-label">Streets & Drainage</span><span class="number-val">435-6271</span></div>
+        <div class="number-item"><span class="number-label">Visitor Info</span><span class="number-val">374-3105</span></div>
+        <div class="number-item"><span class="number-label">Water Service</span><span class="number-val">435-6236</span></div>
+        <div class="number-item"><span class="number-label">Auto Tag / Property Tax</span><span class="number-val">435-8242</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER SIGNUP -->
+<section id="newsletter">
+  <div class="signup-bg">
+    <div class="signup-inner">
+      <p class="section-label">Stay Connected</p>
+      <h2 class="section-title">Get the Petit Bois <em>Monthly Newsletter</em></h2>
+      <div class="divider" style="margin:0 auto 24px;"></div>
+      <p class="body-text">Monthly market updates, recent sales activity, community events, and neighborhood news delivered directly to your inbox.</p>
+
+      <form class="signup-form" action="https://formspree.io/f/xvzlbglb" method="POST">
+        <div class="form-row">
+          <input type="text" name="first_name" placeholder="First Name" required>
+          <input type="text" name="last_name" placeholder="Last Name" required>
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number (optional)">
+        <input type="hidden" name="source" value="Petit Bois Newsletter Signup">
+        <button type="submit">Sign Me Up</button>
+      </form>
+      <p class="form-note">Your information is never shared or sold. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-bg">
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="section-label">My Approach</p>
+        <h2 class="section-title">What Do You Actually <em>Need Right Now?</em></h2>
+        <div class="divider"></div>
+        <p class="body-text">Real estate is not just about finding a house or closing a deal. It is about making sure the decision you make actually fits the life you are living or the one you are working toward.</p>
+        <p class="body-text">I take time on the front end that most agents skip. Before we ever look at a property I want to understand where you are, what you need, and what matters most to you in this season. That clarity is what keeps the process from feeling overwhelming.</p>
+        <p class="body-text">I pay attention to the details. I ask the questions others might not think to ask. And I stay with you through every step until we get to the closing table.</p>
+        <p class="body-text">Clarity before commitment. That is the standard I hold myself to and what I bring to every client I work with.</p>
+        <p class="body-text" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--teal-deep);">— Katina</p>
+      </div>
+      <div class="about-contact">
+        <h3>Let's Connect</h3>
+        <div class="contact-item"><span>📞</span><a href="tel:2283466781">228.346.6781</a></div>
+        <div class="contact-item"><span>✉️</span><a href="mailto:katinbodden@kw.com">katinbodden@kw.com</a></div>
+        <div class="contact-item"><span>🏢</span><span>Keller Williams · Mississippi Gulf Coast</span></div>
+        <div class="contact-item"><span>📋</span><span>MS License S58840</span></div>
+        <div class="contact-item"><span>📅</span><a href="https://calendly.com/katinabodden/let-s-chat" target="_blank">Schedule a Conversation</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="brand">Keys. Clarity. Katina. · Unlocking Smart Moves, One Key at a Time.</span>
+  <p>Katina Bodden · Realtor · Keller Williams · Mississippi Gulf Coast · MS License S58840<br>
+  Information sourced from MLS United and City of Biloxi BNews Monthly. Deemed reliable but not guaranteed. Equal Housing Opportunity.<br>
+  © 2026 Keys. Clarity. Katina. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
